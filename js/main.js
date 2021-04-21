@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 jQuery(function($) {
  let section = $('.section'),
         nav = $('.menu__list'),
@@ -105,23 +107,7 @@ $(function () {
       },
     ],
   });
-  $(".testimonials__items").slick({
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 2000,
-    dots: true,
-    arrows: false,
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  });
+
 
   $(".header__bottom-wrapper").slick({
     infinite: true,
@@ -136,19 +122,61 @@ $(function () {
     cssEase: 'linear', 
   });
   
-  $(".points__wrapper .tab").on("click", function (event) {
-    var id = $(this).attr("data-id");
-    $(".points__wrapper").find(".tab__item").removeClass("active-tab").hide();
-    $(".points__wrapper .tabs").find(".tab").removeClass("active");
-    $(this).addClass("active");
-    $("#" + id)
-      .addClass("active-tab")
-      .fadeIn();
-    return false;
+  // $(".points__wrapper .tab").on("click", function (event) {
+  //   var id = $(this).attr("data-id");
+  //   $(".points__wrapper").find(".tab__item").removeClass("active-tab").hide();
+  //   $(".points__wrapper .tabs").find(".tab").removeClass("active");
+  //   $(this).addClass("active");
+  //   $("#" + id)
+  //     .addClass("active-tab")
+  //     .fadeIn();
+  //   return false;
+  // });
+
+
+  $(".points__subtitle").click(function(event){
+    if($(".points__wrapper").hasClass("one")){   //one если нужно чтобы был только один открытый блок
+      $(".points__subtitle").not($(this)).removeClass("active");
+      $(".points__inner").not($(this).next()).slideUp(300);
+    }
+    $(this).toggleClass("active").next().slideToggle(300);
   });
 
+  new Swiper('.menus__slider',{
+    navigation:{
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination:{
+      el:'.swiper-pagination',
+      type:"fraction",
+      renderFraction: function (currentClass,totalClass) {
+        return 'Стр <span class="' + currentClass + '"></span>' + ' из ' + '<span class="' + totalClass + '"></span>';
+      },
+    },
+    scrollbar:{
+      el: ".swiper-scrollbar",
+      draggable:true
+    },
+   keyboard: {
+     enabled: true,
+     onlyInViewport:true,
+   },
+   loop:true,
+   slidesPerView:3,
+   spaceBetween:50,
+   breakpoints:{
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    coverflowEffect: {
+         rotate: 50,
+         modifier: 1,
+         slideShadows: false,
+    },
+   },  
+  });
 
-  $('a').pdfFlipbook({ key: '95805995495b666f' });
   window.addEventListener("load", AOS.refresh);
   AOS.init({
     // Global settings:
@@ -169,12 +197,6 @@ $(function () {
     once: false, // whether animation should happen only once - while scrolling down
     mirror: false, // whether elements should animate out while scrolling past them
     anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+    });
   });
-
-  // var mixer = mixitup(".menus__inner-box");
-  // var mixer = mixitup(".menus__inner-box", {
-  //   load: {
-  //     filter: ".category-breakfast",
-  //   },
-  // });
 });
