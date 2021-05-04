@@ -163,18 +163,16 @@ $(function () {
      onlyInViewport:true,
    },
    loop:true,
-   slidesPerView:3,
-   spaceBetween:50,
-   breakpoints:{
-    effect: 'coverflow',
-    grabCursor: true,
-    centeredSlides: true,
-    coverflowEffect: {
-         rotate: 50,
-         modifier: 1,
-         slideShadows: false,
-    },
-   },  
+   slidesPerView:1,
+   spaceBetween:50,   
+   centeredSlides:true,
+   preloadImages: false,
+   lazy: {
+    loadOnTransitionStart: true,
+    loadPrevNext: true,
+   },
+   watchSlidesProgress:true,
+   watchSlidesVisibility:true,
   });
 
   window.addEventListener("load", AOS.refresh);
