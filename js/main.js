@@ -21,15 +21,15 @@ jQuery(function($) {
       });
   });
 });
-// document.body.onload = function() {
-//   setTimeout(function() {
-//     var preloader = document.getElementById('page-preloader');
-//     if(!preloader.classList.contains('done'))
-//     {
-//       preloader.classList.add('done');
-//     }
-//   },1000);
-// }
+document.body.onload = function() {
+  setTimeout(function() {
+    var preloader = document.getElementById('page-preloader');
+    if(!preloader.classList.contains('done'))
+    {
+      preloader.classList.add('done');
+    }
+  },1000);
+}
 
 $("nav, .header__top").on("click", "a", function (event) {
   event.preventDefault();
@@ -132,6 +132,7 @@ $(function () {
   //     .fadeIn();
   //   return false;
   // });
+
 
 
   $(".points__subtitle").click(function(event){
